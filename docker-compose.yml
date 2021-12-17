@@ -12,7 +12,7 @@ services:
     links:
       - php
   php:
-    image: php:7.4-fpm-alpine
     container_name: php_web
-    volumes:
-      - ./src:/src
+    build:
+      context: .
+    image: php-nginx/dev
