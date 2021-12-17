@@ -15,5 +15,12 @@ services:
     container_name: php_web
     build:
       context: .
-      target: debug
+      target: prod
     image: php-nginx/dev
+    command: sh -c "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer"
+    command: composer install
+    command: php-fpm -F
+    volumes:
+      - ./src:/usr/app/src
+      - ./composer.json:/usr/app/composer.json
+      - ./composer.lock:/usr/app/composer.lock

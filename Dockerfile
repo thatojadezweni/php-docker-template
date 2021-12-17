@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine as debug
+FROM php:7.4-fpm-alpine as prod
 
 WORKDIR /usr/app
 
@@ -11,3 +11,7 @@ COPY ./composer.* ./
 CMD ["composer", "install"]
 
 CMD ["php-fpm"]
+
+# Seperate container for development
+
+FROM php:7.4-fpm-alpine as dev
