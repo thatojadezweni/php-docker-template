@@ -15,4 +15,5 @@ services:
     container_name: php_web
     build:
       context: .
+      target: debug
     image: php-nginx/dev
