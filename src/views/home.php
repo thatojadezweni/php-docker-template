@@ -1,13 +1,5 @@
-<?php
+<?php include_once(__DIR__ . '/../common/header.php');?>
 
-include_once(__DIR__ . '/../common/header.php');
+<p> Welcome to the beautiful template home page </p>
 
-?>
-
-<p>hello there</p>
-
-<?php
-
-include_once(__DIR__ . '/../common/footer.php');
-
-?>
+<?php include_once(__DIR__ . '/../common/footer.php');?>
