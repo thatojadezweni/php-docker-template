@@ -7,12 +7,20 @@ services:
       - 8080:80
       - 8443:443
     volumes:
-      - ./src:/src
+      - ./src:/usr/app/src
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     links:
       - php
   php:
-    image: php:7.4-fpm-alpine
     container_name: php_web
+    build:
+      context: .
+      target: prod
+    image: php-nginx/dev
+    command: sh -c "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer"
+    command: composer install
+    command: php-fpm -F
     volumes:
-      - ./src:/src
+      - ./src:/usr/app/src
+      - ./composer.json:/usr/app/composer.json
+      - ./composer.lock:/usr/app/composer.lock
